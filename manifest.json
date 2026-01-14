@@ -1,0 +1,21 @@
+{
+    "Group": "OneBench",
+    "Name": "OneBench",
+    "Version": "1.0.0",
+    "Description": "Adds a unified crafting bench that can craft swords without a weapon bench.",
+    "Authors": [
+        {
+            "Name": "DVicttor"
+        }
+    ],
+    "Website": "",
+    "ServerVersion": "*",
+    "Dependencies": {
+        "Hytale:EntityModule": "*"
+    },
+    "OptionalDependencies": {
+    },
+    "DisabledByDefault": false,
+    "Main": "com.onebench.OneBench",
+    "IncludesAssetPack": true
+}
