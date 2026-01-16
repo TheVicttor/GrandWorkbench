@@ -1,8 +1,8 @@
 {
-    "Group": "OneBench",
-    "Name": "OneBench",
+    "Group": "GrandWorkbench",
+    "Name": "GrandWorkbench",
     "Version": "1.0.0",
-    "Description": "Adds a unified crafting bench that can craft swords without a weapon bench.",
+    "Description": "Adds a unified crafting bench that can craft almost anything.",
     "Authors": [
         {
             "Name": "DVicttor"
@@ -16,6 +16,6 @@
     "OptionalDependencies": {
     },
     "DisabledByDefault": false,
-    "Main": "com.onebench.OneBench",
+    "Main": "com.grandworkbench.GrandWorkbench",
     "IncludesAssetPack": true
 }
