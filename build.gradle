@@ -16,7 +16,12 @@ java {
     }
 }
 
+version = "1.0.0"
+
 tasks.jar {
+    archiveBaseName.set("GrandWorkbench")
+    archiveVersion.set(version)
+
     from('.') {
         include 'manifest.json'
     }

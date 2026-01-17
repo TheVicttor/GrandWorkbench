@@ -18,7 +18,7 @@ public class GrandWorkbench extends JavaPlugin {
 
     private static final String TARGET_BENCH_ID = "GrandWorkbench";
 
-    // GrandWorkbench tabs
+    // GrandWorkbench Tabs
     private static final String WORKBENCH_GENERAL  = "workbench_general";
     private static final String WEAPON_GENERAL     = "weapon_general";
     private static final String ARMOR_GENERAL      = "armor_general";
@@ -28,7 +28,7 @@ public class GrandWorkbench extends JavaPlugin {
     private static final String FURNITURE_GENERAL  = "furniture_general";
     private static final String COOKING_GENERAL    = "cooking_general";
 
-    // Vanilla categories (detectar de onde veio)
+    // Vanilla Categories
     private static final Set<String> WORKBENCH_CATEGORIES = Set.of(
             "Workbench_Survival", "Workbench_Tools", "Workbench_Crafting", "Workbench_Tinkering"
     );
@@ -55,7 +55,6 @@ public class GrandWorkbench extends JavaPlugin {
             "Prepared", "Baked", "Ingredients"
     );
 
-    // evita recursion/loop quando a gente mesmo carrega recipes novas
     private static volatile boolean generating = false;
 
     public GrandWorkbench(@Nonnull JavaPluginInit init) {
@@ -85,27 +84,21 @@ public class GrandWorkbench extends JavaPlugin {
             for (CraftingRecipe recipe : loaded) {
                 String id = recipe.getId();
 
-                // não processa recipes que a gente mesmo gerou
                 if (id != null && id.startsWith("GrandWorkbench_")) continue;
 
                 BenchRequirement[] reqs = recipe.getBenchRequirement();
                 if (reqs == null) continue;
 
-                // Para cada BenchRequirement relevante, cria uma cópia da recipe
                 for (BenchRequirement req : reqs) {
-                    // só vamos espelhar recipes de crafting (não fieldcraft)
                     if (req.type != BenchType.Crafting) continue;
 
                     String condensed = condensedCategoryFor(req.id, req.categories);
-                    if (condensed == null) continue; // não é uma bench que queremos absorver
+                    if (condensed == null) continue;
 
-                    // clone do recipe (copy constructor existe!)
                     CraftingRecipe clone = new CraftingRecipe(recipe);
 
-                    // novo id único (um por requirement)
                     String newId = "GrandWorkbench_" + id + "_" + req.id;
 
-                    // requirement novo: agora exige GrandWorkbench + categoria general correspondente
                     int clampedTier = Math.min(req.requiredTierLevel, 3);
 
                     BenchRequirement grandWorkbenchReq = new BenchRequirement(
@@ -124,7 +117,6 @@ public class GrandWorkbench extends JavaPlugin {
 
             if (!generated.isEmpty()) {
                 System.out.println("[GrandWorkbench] Generating " + generated.size() + " GrandWorkbench_* recipes...");
-                // carrega como assets novos
                 CraftingRecipe.getAssetStore().loadAssets("GrandWorkbench:GrandWorkbench", generated);
             } else {
                 System.out.println("[GrandWorkbench] No recipes to generate this pass.");
@@ -137,28 +129,20 @@ public class GrandWorkbench extends JavaPlugin {
     private String condensedCategoryFor(String benchId, String[] categories) {
         if (benchId == null) return null;
 
-        // Workbench
         if ("Workbench".equals(benchId) && hasAny(categories, WORKBENCH_CATEGORIES)) return WORKBENCH_GENERAL;
 
-        // Weapon bench
         if ("Weapon_Bench".equals(benchId) && hasAny(categories, WEAPON_CATEGORIES)) return WEAPON_GENERAL;
 
-        // Armor bench
         if ("Armor_Bench".equals(benchId) && hasAny(categories, ARMOR_CATEGORIES)) return ARMOR_GENERAL;
 
-        // Alchemy
         if ("Alchemybench".equals(benchId) && hasAny(categories, ALCHEMY_CATEGORIES)) return ALCHEMY_GENERAL;
 
-        // Arcane
         if ("Arcanebench".equals(benchId) && hasAny(categories, ARCANE_CATEGORIES)) return ARCANE_GENERAL;
 
-        // Farming
         if ("Farmingbench".equals(benchId) && hasAny(categories, FARMING_CATEGORIES)) return FARMING_GENERAL;
 
-        // Furniture
         if ("Furniture_Bench".equals(benchId) && hasAny(categories, FURNITURE_CATEGORIES)) return FURNITURE_GENERAL;
 
-        // Cooking
         if ("Cookingbench".equals(benchId) && hasAny(categories, COOKING_CATEGORIES)) return COOKING_GENERAL;
 
         return null;

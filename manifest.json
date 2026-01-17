@@ -2,7 +2,7 @@
     "Group": "GrandWorkbench",
     "Name": "GrandWorkbench",
     "Version": "1.0.0",
-    "Description": "Adds a unified crafting bench that can craft almost anything.",
+    "Description": "Adds a unified workbench that brings most crafting recipes into a single, cleaner workbench UI",
     "Authors": [
         {
             "Name": "DVicttor"

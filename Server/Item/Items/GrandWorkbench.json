@@ -1,21 +1,28 @@
 {
   "TranslationProperties": {
     "Name": "Grand Workbench",
-    "Description": "A master workbench that unifies most crafting recipes"
+    "Description": "A workbench that unifies most crafting recipes"
   },
 
   "Recipe": {
     "Input": [
       { "Quantity": 20, "ResourceTypeId": "Wood_Trunk" },
       { "Quantity": 20, "ResourceTypeId": "Rock" },
-      { "Quantity": 5, "ResourceTypeId": "Ingredient_Bar_Copper" },
-      { "Quantity": 5, "ResourceTypeId": "Ingredient_Leather_Light" }
+      { "Quantity": 5, "ItemId": "Ingredient_Bar_Copper" },
+      { "Quantity": 5, "ItemId": "Ingredient_Leather_Light" }
     ],
     "BenchRequirement": [
       {
         "Type": "Crafting",
         "Categories": ["Tools"],
         "Id": "Fieldcraft"
+      },
+      {
+        "Id": "Workbench",
+        "Type": "Crafting",
+        "Categories": [
+          "Workbench_Crafting"
+        ]
       }
     ]
   },
@@ -127,43 +134,25 @@
     "State": {
       "Id": "crafting",
       "Definitions": {
-        "CraftCompleted": {
-          "CustomModelAnimation": "Blocks/GrandWorkbench/Workbench_Crafting.blockyanim",
-          "Looping": true
-        },
-        "CraftCompletedInstant": {
-          "CustomModelAnimation": "Blocks/GrandWorkbench/Workbench_Crafting.blockyanim"
-        },
-
         "Tier2": {
-          "CustomModel": "Blocks/GrandWorkbench/Workbench2.blockymodel",
+          "CustomModel": "Blocks/GrandWorkbench/GrandWorkbench.blockymodel",
           "CustomModelTexture": [
-            { "Texture": "Blocks/GrandWorkbench/Workbench2_Texture.png", "Weight": 1 }
+            { "Texture": "Blocks/GrandWorkbench/GrandWorkbench2.png", "Weight": 1 }
           ],
           "HitboxType": "Bench_Workbench2",
           "State": {
-            "Id": "crafting",
-            "Definitions": {
-              "CraftCompleted": {
-                "CustomModelAnimation": "Blocks/GrandWorkbench/Workbench2_Crafting.blockyanim"
-              }
-            }
+            "Id": "crafting"
           }
         },
 
         "Tier3": {
-          "CustomModel": "Blocks/GrandWorkbench/Workbench3.blockymodel",
+          "CustomModel": "Blocks/GrandWorkbench/GrandWorkbench.blockymodel",
           "CustomModelTexture": [
-            { "Texture": "Blocks/GrandWorkbench/Workbench3_Texture.png", "Weight": 1 }
+            { "Texture": "Blocks/GrandWorkbench/GrandWorkbench3.png", "Weight": 1 }
           ],
           "HitboxType": "Bench_Workbench3",
           "State": {
-            "Id": "crafting",
-            "Definitions": {
-              "CraftCompleted": {
-                "CustomModelAnimation": "Blocks/GrandWorkbench/Workbench3_Crafting.blockyanim"
-              }
-            }
+            "Id": "crafting"
           }
         }
       }
